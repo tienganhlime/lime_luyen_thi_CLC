@@ -10,13 +10,15 @@
   body {font-family: 'Quicksand', sans-serif; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); font-size: 1.5rem;}
   .question-box {background: #f8f9fa; padding: 20px; border-radius: 20px; margin-bottom: 20px; border-left: 4px solid #4CAF50;}
   .option-btn {padding: 12px 24px; margin: 8px; border: 2px solid #ddd; border-radius: 20px; background: white; 
-               cursor: pointer; transition: all 0.3s; font-size: 20px; min-width: 120px;}
+               cursor: pointer; transition: all 0.3s; font-size: 20px; min-width: 120px;
+               font-variant-ligatures: none !important; /* Tắt ligatures để gạch chân hiển thị đúng */}
   .option-btn:hover {border-color: #4CAF50; background: #f0fff0;}
   .option-btn.selected {border-color: #4CAF50; background: #4CAF50; color: white; font-weight: bold;}
   .input-answer {padding: 10px; border: 2px solid #ddd; border-radius: 20px; font-size: 20px; width: 100%; max-width: 500px;}
   .input-answer:focus {border-color: #4CAF50; outline: none; background: #f0fff0;}
   .section-title {color: #FF6B6B; font-size: 2rem; font-weight: bold; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 3px solid #FF6B6B;}
   .font-bold { font-size: 1.5rem; }
+  .option-btn u { text-decoration: underline !important; text-decoration-thickness: 2px !important; text-underline-offset: 2px !important; }
 </style>
 </head>
 <body>
@@ -117,13 +119,14 @@
       </div>
 
       <div class="question-box">
-        <p class="font-bold text-xl mb-3">7. Choose the word whose underlined part is differently pronounced from the others.</p>
-        <div class="flex flex-wrap">
-          <button class="option-btn" onclick="selectAnswer(7, 'A')">A. favour<u>i</u>te</button>
-          <button class="option-btn" onclick="selectAnswer(7, 'B')">B. ch<u>i</u>ldren</button>
-          <button class="option-btn" onclick="selectAnswer(7, 'C')">C. surpr<u>i</u>se</button>
-          <button class="option-btn" onclick="selectAnswer(7, 'D')">D. f<u>i</u>nger</button>
-        </div>
+  <p class="font-bold text-xl mb-3">7. Choose the word whose underlined part is differently pronounced from the others.</p>
+  <div class="flex flex-wrap">
+    <button class="option-btn" onclick="selectAnswer(7, 'A')">A. favour<span style="text-decoration: underline;">i</span>te</button>
+    <button class="option-btn" onclick="selectAnswer(7, 'B')">B. ch<span style="text-decoration: underline;">i</span>ldren</button>
+    <button class="option-btn" onclick="selectAnswer(7, 'C')">C. surpr<span style="text-decoration: underline;">i</span>se</button>
+    <button class="option-btn" onclick="selectAnswer(7, 'D')">D. f<span style="text-decoration: underline;">i</span>nger</button>
+  </div>
+</div>
       </div>
 
       <!-- PHẦN 3: WORD STRESS (Câu 8-9) -->
