@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Test 2 - Luyện thi CLC</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {font-family: 'Quicksand', sans-serif; background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%); font-size: 1.5rem;}
+  .question-box {background: #f8f9fa; padding: 20px; border-radius: 20px; margin-bottom: 20px; border-left: 4px solid #4CAF50;}
+  .option-btn {padding: 12px 24px; margin: 8px; border: 2px solid #ddd; border-radius: 20px; background: white; 
+               cursor: pointer; transition: all 0.3s; font-size: 20px; min-width: 120px;}
+  .option-btn:hover {border-color: #4CAF50; background: #f0fff0;}
+  .option-btn.selected {border-color: #4CAF50; background: #4CAF50; color: white; font-weight: bold;}
+  .input-answer {padding: 10px; border: 2px solid #ddd; border-radius: 20px; font-size: 20px; width: 100%; max-width: 500px;}
+  .input-answer:focus {border-color: #4CAF50; outline: none; background: #f0fff0;}
+  .section-title {color: #FF6B6B; font-size: 2rem; font-weight: bold; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 3px solid #FF6B6B;}
+  .font-bold { font-size: 1.5rem; }
+</style>
+</head>
+<body>
+
+<!-- Màn hình nhập mã -->
+<div id="codeScreen" class="min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-2xl w-full bg-white rounded-2xl shadow-2xl p-12 text-center">
+    <img src="https://gofirst.pro/images/uploads/62/baseimg/logo_16541442053.png" class="w-32 mx-auto mb-6">
+    <h1 class="text-5xl font-bold text-green-700 mb-4">LUYỆN THI VÀO LỚP 6 CLC</h1>
+    <h2 class="text-3xl font-bold text-orange-600 mb-8">Practice Test 2</h2>
+    <input type="text" id="studentCode" class="w-full px-6 py-5 text-3xl border-4 border-green-400 rounded-xl uppercase text-center mb-8" placeholder="Nhập mã học sinh">
+    <button onclick="verifyStudent()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-6 rounded-xl text-3xl shadow-2xl">BẮT ĐẦU</button>
+  </div>
+</div>
+
+<!-- Màn hình làm bài -->
+<div id="testScreen" class="hidden min-h-screen p-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="bg-white rounded-2xl shadow-2xl p-6 sticky top-0 z-10 mb-6">
+      <div class="flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-green-700">Practice Test 2 - CLC</h1>
+        <div class="text-right">
+          <p class="text-xl">Học sinh: <span id="headerName" class="font-bold"></span></p>
+          <p class="text-3xl font-bold text-red-600">⏱ <span id="timer">00:00</span></p>
+        </div>
+      </div>
+      <div class="mt-4 bg-gray-300 rounded-full h-6">
+        <div id="progress" class="bg-green-600 h-full transition-all" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-2xl shadow-2xl p-12">
+      
+      <!-- PHẦN 1: GRAMMAR & VOCABULARY (Câu 1-5) -->
+      <div class="section-title">PART 1: GRAMMAR & VOCABULARY (Questions 1-5)</div>
+      
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">1. Oxford is one of ______ oldest universities in Europe.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(1, 'A')">A. a</button>
+          <button class="option-btn" onclick="selectAnswer(1, 'B')">B. the</button>
+          <button class="option-btn" onclick="selectAnswer(1, 'C')">C. an</button>
+          <button class="option-btn" onclick="selectAnswer(1, 'D')">D. x</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">2. Jane ______ up early on her trip to Hue last week.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(2, 'A')">A. is waking</button>
+          <button class="option-btn" onclick="selectAnswer(2, 'B')">B. wakes</button>
+          <button class="option-btn" onclick="selectAnswer(2, 'C')">C. woke</button>
+          <button class="option-btn" onclick="selectAnswer(2, 'D')">D. will wake</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">3. Louise wrote the things she needed to buy for the meal on a ______ of paper</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(3, 'A')">A. piece</button>
+          <button class="option-btn" onclick="selectAnswer(3, 'B')">B. slice</button>
+          <button class="option-btn" onclick="selectAnswer(3, 'C')">C. part</button>
+          <button class="option-btn" onclick="selectAnswer(3, 'D')">D. loaf</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">4. "______ chocolate do you eat every day?" - "Two bars."</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(4, 'A')">A. How many</button>
+          <button class="option-btn" onclick="selectAnswer(4, 'B')">B. How often</button>
+          <button class="option-btn" onclick="selectAnswer(4, 'C')">C. How big</button>
+          <button class="option-btn" onclick="selectAnswer(4, 'D')">D. How much</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">5. She took an aspirin ______ she wanted her headache to go away.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(5, 'A')">A. and</button>
+          <button class="option-btn" onclick="selectAnswer(5, 'B')">B. but</button>
+          <button class="option-btn" onclick="selectAnswer(5, 'C')">C. so</button>
+          <button class="option-btn" onclick="selectAnswer(5, 'D')">D. because</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 2: PRONUNCIATION (Câu 6-7) -->
+      <div class="section-title">PART 2: PRONUNCIATION (Questions 6-7)</div>
+      
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">6. Choose the word whose underlined part is differently pronounced from the others.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(6, 'A')">A. cough<u>s</u></button>
+          <button class="option-btn" onclick="selectAnswer(6, 'B')">B. cook<u>s</u></button>
+          <button class="option-btn" onclick="selectAnswer(6, 'C')">C. buy<u>s</u></button>
+          <button class="option-btn" onclick="selectAnswer(6, 'D')">D. sit<u>s</u></button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">7. Choose the word whose underlined part is differently pronounced from the others.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(7, 'A')">A. favour<u>i</u>te</button>
+          <button class="option-btn" onclick="selectAnswer(7, 'B')">B. ch<u>i</u>ldren</button>
+          <button class="option-btn" onclick="selectAnswer(7, 'C')">C. surpr<u>i</u>se</button>
+          <button class="option-btn" onclick="selectAnswer(7, 'D')">D. f<u>i</u>nger</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 3: WORD STRESS (Câu 8-9) -->
+      <div class="section-title">PART 3: WORD STRESS (Questions 8-9)</div>
+      
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">8. Choose the word whose main stress is different from the others.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(8, 'A')">A. peaceful</button>
+          <button class="option-btn" onclick="selectAnswer(8, 'B')">B. country</button>
+          <button class="option-btn" onclick="selectAnswer(8, 'C')">C. stomach</button>
+          <button class="option-btn" onclick="selectAnswer(8, 'D')">D. design</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">9. Choose the word whose main stress is different from the others.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(9, 'A')">A. happen</button>
+          <button class="option-btn" onclick="selectAnswer(9, 'B')">B. answer</button>
+          <button class="option-btn" onclick="selectAnswer(9, 'C')">C. visit</button>
+          <button class="option-btn" onclick="selectAnswer(9, 'D')">D. enjoy</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 4: GRAMMAR & VOCABULARY (Câu 10-21) -->
+      <div class="section-title">PART 4: GRAMMAR & VOCABULARY (Questions 10-21)</div>
+      
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">10. Switzerland is a very ______ country.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(10, 'A')">A. beauty</button>
+          <button class="option-btn" onclick="selectAnswer(10, 'B')">B. beautiful</button>
+          <button class="option-btn" onclick="selectAnswer(10, 'C')">C. beautify</button>
+          <button class="option-btn" onclick="selectAnswer(10, 'D')">D. beautifully</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">11. ______ bowls of rice do you eat every day?</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(11, 'A')">A. How often</button>
+          <button class="option-btn" onclick="selectAnswer(11, 'B')">B. How much</button>
+          <button class="option-btn" onclick="selectAnswer(11, 'C')">C. How many</button>
+          <button class="option-btn" onclick="selectAnswer(11, 'D')">D. How long</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">12. Mary shouldn't ride too fast because she may ______ her bike</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(12, 'A')">A. fall off</button>
+          <button class="option-btn" onclick="selectAnswer(12, 'B')">B. look after</button>
+          <button class="option-btn" onclick="selectAnswer(12, 'C')">C. get up</button>
+          <button class="option-btn" onclick="selectAnswer(12, 'D')">D. take care of</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">13. They go to the bakery to buy three ______ of bread twice a week.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(13, 'A')">A. cans</button>
+          <button class="option-btn" onclick="selectAnswer(13, 'B')">B. loaves</button>
+          <button class="option-btn" onclick="selectAnswer(13, 'C')">C. bars</button>
+          <button class="option-btn" onclick="selectAnswer(13, 'D')">D. glasses</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">14. The earth ______ the sun once every 365 days.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(14, 'A')">A. circles</button>
+          <button class="option-btn" onclick="selectAnswer(14, 'B')">B. is circling</button>
+          <button class="option-btn" onclick="selectAnswer(14, 'C')">C. circling</button>
+          <button class="option-btn" onclick="selectAnswer(14, 'D')">D. is going to circle</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">15. The exam was much ______ than we expected.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(15, 'A')">A. more difficult</button>
+          <button class="option-btn" onclick="selectAnswer(15, 'B')">B. most difficult</button>
+          <button class="option-btn" onclick="selectAnswer(15, 'C')">C. difficult</button>
+          <button class="option-btn" onclick="selectAnswer(15, 'D')">D. difficult</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">16. Jame didn't understand the lesson, ______ he couldn't do the homework.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(16, 'A')">A. because</button>
+          <button class="option-btn" onclick="selectAnswer(16, 'B')">B. but</button>
+          <button class="option-btn" onclick="selectAnswer(16, 'C')">C. so</button>
+          <button class="option-btn" onclick="selectAnswer(16, 'D')">D. although</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">17. I called Roger at 8.00 pm last night, but he ______ at home.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(17, 'A')">A. didn't be</button>
+          <button class="option-btn" onclick="selectAnswer(17, 'B')">B. were</button>
+          <button class="option-btn" onclick="selectAnswer(17, 'C')">C. wasn't</button>
+          <button class="option-btn" onclick="selectAnswer(17, 'D')">D. weren't</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">18. There's a good film ______ the cinema in Lang Ha Street.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(18, 'A')">A. at</button>
+          <button class="option-btn" onclick="selectAnswer(18, 'B')">B. on</button>
+          <button class="option-btn" onclick="selectAnswer(18, 'C')">C. in</button>
+          <button class="option-btn" onclick="selectAnswer(18, 'D')">D. by</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">19. We're free all day. Come to see us ______ time you like.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(19, 'A')">A. a</button>
+          <button class="option-btn" onclick="selectAnswer(19, 'B')">B. any</button>
+          <button class="option-btn" onclick="selectAnswer(19, 'C')">C. much</button>
+          <button class="option-btn" onclick="selectAnswer(19, 'D')">D. by</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">20. Please give me that ______ bucket.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(20, 'A')">A. plastic new green</button>
+          <button class="option-btn" onclick="selectAnswer(20, 'B')">B. new green plastic</button>
+          <button class="option-btn" onclick="selectAnswer(20, 'C')">C. new plastic</button>
+          <button class="option-btn" onclick="selectAnswer(20, 'D')">D. green new plastic</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">21. He likes ______ carefully about things before making a decision.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(21, 'A')">A. think</button>
+          <button class="option-btn" onclick="selectAnswer(21, 'B')">B. to thinking</button>
+          <button class="option-btn" onclick="selectAnswer(21, 'C')">C. to think</button>
+          <button class="option-btn" onclick="selectAnswer(21, 'D')">D. thinks</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 5: CLOSEST IN MEANING (Câu 22-23) -->
+      <div class="section-title">PART 5: CLOSEST IN MEANING (Questions 22-23)</div>
+      
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">22. The <u>final</u> test for the class will be two weeks from today.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(22, 'A')">A. late</button>
+          <button class="option-btn" onclick="selectAnswer(22, 'B')">B. ancient</button>
+          <button class="option-btn" onclick="selectAnswer(22, 'C')">C. first</button>
+          <button class="option-btn" onclick="selectAnswer(22, 'D')">D. last</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">23. I <u>keep</u> my book on shelf.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(23, 'A')">A. bring</button>
+          <button class="option-btn" onclick="selectAnswer(23, 'B')">B. store</button>
+          <button class="option-btn" onclick="selectAnswer(23, 'C')">C. show</button>
+          <button class="option-btn" onclick="selectAnswer(23, 'D')">D. train</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 6: OPPOSITE IN MEANING (Câu 24-25) -->
+      <div class="section-title">PART 6: OPPOSITE IN MEANING (Questions 24-25)</div>
+      
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">24. At the end of the day, we felt <u>tired</u>.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(24, 'A')">A. sleepy</button>
+          <button class="option-btn" onclick="selectAnswer(24, 'B')">B. relaxed</button>
+          <button class="option-btn" onclick="selectAnswer(24, 'C')">C. terrible</button>
+          <button class="option-btn" onclick="selectAnswer(24, 'D')">D. famous</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">25. Peter drove <u>fast</u> to work because he got up late this morning.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(25, 'A')">A. busily</button>
+          <button class="option-btn" onclick="selectAnswer(25, 'B')">B. early</button>
+          <button class="option-btn" onclick="selectAnswer(25, 'C')">C. slowly</button>
+          <button class="option-btn" onclick="selectAnswer(25, 'D')">D. quickly</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 7: COMMUNICATION (Câu 26-27) -->
+      <div class="section-title">PART 7: COMMUNICATION (Questions 26-27)</div>
+      
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">26. "Would you like to go camping this weekend? - "_________."</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(26, 'A')">A. Yes, I should</button>
+          <button class="option-btn" onclick="selectAnswer(26, 'B')">B. Yes, I do</button>
+          <button class="option-btn" onclick="selectAnswer(26, 'C')">C. Yes, please</button>
+          <button class="option-btn" onclick="selectAnswer(26, 'D')">D. Yes, I'd love to</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">27. "What does your best friend look like?" - "_________."</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(27, 'A')">A. He likes fishing</button>
+          <button class="option-btn" onclick="selectAnswer(27, 'B')">B. He'd like a head of cabbage</button>
+          <button class="option-btn" onclick="selectAnswer(27, 'C')">C. He has dark skin and blue eyes</button>
+          <button class="option-btn" onclick="selectAnswer(27, 'D')">D. He is talkative and funny</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 8: CLOZE TEST (Câu 28-32) -->
+      <div class="section-title">PART 8: CLOZE TEST (Questions 28-32)</div>
+      
+      <div class="bg-blue-50 p-6 rounded-xl mb-4 text-xl">
+        <p class="text-gray-800 leading-relaxed">
+          If you travel to London by train you can (0)......buy......... your ticket at the local train station using a credit card. At certain times of the day, there is a discount on the fare so you can get a(n) (28)............ ticket. It's a good idea to have plenty of (29)...... so that you can use it to (30).. .......... for your underground ticket from a machine. If you don't have the correct money, you will probably (31)..... coach. This is not as (32)............ queue at the ticket office. Of course you can also go to London by .......... as the train, but it takes longer.
+        </p>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">28.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(28, 'A')">A. valuable</button>
+          <button class="option-btn" onclick="selectAnswer(28, 'B')">B. expensive</button>
+          <button class="option-btn" onclick="selectAnswer(28, 'C')">C. cheaper</button>
+          <button class="option-btn" onclick="selectAnswer(28, 'D')">D. pricy</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">29.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(29, 'A')">A. money</button>
+          <button class="option-btn" onclick="selectAnswer(29, 'B')">B. change</button>
+          <button class="option-btn" onclick="selectAnswer(29, 'C')">C. currency</button>
+          <button class="option-btn" onclick="selectAnswer(29, 'D')">D. notes</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">30.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(30, 'A')">A. earn</button>
+          <button class="option-btn" onclick="selectAnswer(30, 'B')">B. save</button>
+          <button class="option-btn" onclick="selectAnswer(30, 'C')">C. cost</button>
+          <button class="option-btn" onclick="selectAnswer(30, 'D')">D. pay</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">31.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(31, 'A')">A. must</button>
+          <button class="option-btn" onclick="selectAnswer(31, 'B')">B. have to</button>
+          <button class="option-btn" onclick="selectAnswer(31, 'C')">C. should</button>
+          <button class="option-btn" onclick="selectAnswer(31, 'D')">D. going to</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">32.</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(32, 'A')">A. fast</button>
+          <button class="option-btn" onclick="selectAnswer(32, 'B')">B. large</button>
+          <button class="option-btn" onclick="selectAnswer(32, 'C')">C. expensive</button>
+          <button class="option-btn" onclick="selectAnswer(32, 'D')">D. slow</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 9: READING COMPREHENSION (Câu 33-36) -->
+      <div class="section-title">PART 9: READING COMPREHENSION (Questions 33-36)</div>
+      
+      <div class="bg-blue-50 p-6 rounded-xl mb-4 text-xl">
+        <p class="text-gray-800 leading-relaxed">
+          Pop singer Charlotte Bond talks about living in London.<br><br>
+          I live in the center of London. I love it because there's always something happening and there are people around whatever time it is. Famous people like it too – they often come here for the restaurants and shops.<br><br>
+          I've lived here all my life. When I was little, I had singing lessons at a place near where I live now. I was afraid of the teacher at first, and some of the songs we did together were quite hard to learn. But she was good at what she did and I learned a lot of things that have helped me in my career.<br><br>
+          When friends visit me now, I enjoy taking them sightseeing. You can get a bus around the city, but we prefer to walk. I've got a little car and I love driving, but there's so much traffic here, and it's hard to find parking spaces.<br><br>
+          One building I love is the Natural History Museum. They sometimes hold parties there, and last December my band and I played at one. I'll never forget it. When I go to exhibitions at the museum with my friends, I tell them all about night and how amazing it was.<br><br>
+          Soon I'll be leaving London to go on tour my band. We're playing in lots of new cities and I can't wait to explore them. We've sold lots of tickets, which is great. I'll be away from my family for six months, but they're coming to see me sing, so it's fine.
+        </p>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">33. What does Charlotte love about the center of London?</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(33, 'A')">A. It is always busy.</button>
+          <button class="option-btn" onclick="selectAnswer(33, 'B')">B. Famous people often visit.</button>
+          <button class="option-btn" onclick="selectAnswer(33, 'C')">C. The shops are very good.</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">34. How does Charlotte feel about the singing lessons she had?</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(34, 'A')">A. She's surprised she can remember them.</button>
+          <button class="option-btn" onclick="selectAnswer(34, 'B')">B. She's sorry she didn't try harder.</button>
+          <button class="option-btn" onclick="selectAnswer(34, 'C')">C. She's glad she did them.</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">35. What does Charlotte think is the best way to see city?</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(35, 'A')">A. by car</button>
+          <button class="option-btn" onclick="selectAnswer(35, 'B')">B. on foot</button>
+          <button class="option-btn" onclick="selectAnswer(35, 'C')">C. by bus</button>
+        </div>
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">36. What does Charlotte say about going on tour with her band?</p>
+        <div class="flex flex-wrap">
+          <button class="option-btn" onclick="selectAnswer(36, 'A')">A. She hopes lots of people will buy tickets for her shows.</button>
+          <button class="option-btn" onclick="selectAnswer(36, 'B')">B. She feels excited about seeing new places.</button>
+          <button class="option-btn" onclick="selectAnswer(36, 'C')">C. She's worried she'll miss her family.</button>
+        </div>
+      </div>
+
+      <!-- PHẦN 10: SENTENCE TRANSFORMATION (Câu 37-40) -->
+      <div class="section-title">PART 10: SENTENCE TRANSFORMATION (Questions 37-40)</div>
+      
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">37. No ocean in the world is deeper than the Pacific Ocean.</p>
+        <p class="text-gray-700 mb-2 text-xl">⇒ The Pacific Ocean ____________________.</p>
+        <input type="text" class="input-answer" id="q37" placeholder="Your answer..." onblur="saveTextAnswer(37, this.value)">
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">38. This house is too expensive for my parents to buy.</p>
+        <p class="text-gray-700 mb-2 text-xl">⇒ My parents ____________________.</p>
+        <input type="text" class="input-answer" id="q38" placeholder="Your answer..." onblur="saveTextAnswer(38, this.value)">
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">39. Jennie doesn't like doing yoga. (interested).</p>
+        <p class="text-gray-700 mb-2 text-xl">⇒ Jennie ____________________.</p>
+        <input type="text" class="input-answer" id="q39" placeholder="Your answer..." onblur="saveTextAnswer(39, this.value)">
+      </div>
+
+      <div class="question-box">
+        <p class="font-bold text-xl mb-3">40. Lucy walked to school every day when she was young. (foot)</p>
+        <p class="text-gray-700 mb-2 text-xl">⇒ Lucy ____________________.</p>
+        <input type="text" class="input-answer" id="q40" placeholder="Your answer..." onblur="saveTextAnswer(40, this.value)">
+      </div>
+
+      <div class="text-center mt-16">
+        <button onclick="submitTest()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-8 px-32 rounded-xl text-4xl shadow-2xl">
+          NỘP BÀI
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Màn hình kết quả -->
+<div id="resultScreen" class="hidden min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-green-50 to-blue-50">
+  <div class="max-w-4xl w-full bg-white rounded-3xl shadow-2xl p-16 text-center">
+    <h1 class="text-6xl font-bold text-green-700 mb-8">HOÀN THÀNH!</h1>
+    <div class="text-9xl font-bold text-green-600 mb-6" id="finalScore">0%</div>
+    <p class="text-4xl mb-4">Đúng <span id="correctCount">0</span>/40 câu</p>
+    <p class="text-3xl text-gray-700 mb-12">Thời gian: <span id="finalTime">00:00</span></p>
+
+    <div class="bg-red-50 border-2 border-red-400 rounded-2xl p-8 mb-10">
+      <p class="text-2xl font-bold text-red-800">Câu sai: <span id="wrongList" class="font-mono">Không có</span></p>
+    </div>
+
+    <div class="bg-blue-50 border-2 border-blue-400 rounded-2xl p-8 text-left">
+      <p class="text-2xl font-bold text-blue-800 mb-4">Lịch sử làm bài:</p>
+      <div id="timelineDisplay" class="text-lg space-y-2 font-mono"></div>
+    </div>
+
+    <button onclick="location.reload()" class="mt-12 bg-green-600 hover:bg-green-700 text-white font-bold py-6 px-20 rounded-xl text-3xl shadow-2xl">
+      LÀM LẠI BÀI
+    </button>
+  </div>
+</div>
+
+<script>
+const URL = 'https://script.google.com/macros/s/AKfycbzR5sr9oq2JokyRsIOmDdbO75rpiH8Xq2AcKNK4Suxe_ZbOlQYR9yqk-OyxiMmZzRKV/exec';
+const TEST_NAME = 'Practice Test 2';
+const TOTAL_QUESTIONS = 40;
+
+let student = null, startTime = null, timer = null;
+let answers = {}, timeline = [], tabSwitches = 0;
+
+// Theo dõi chuyển tab
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && !document.getElementById('testScreen').classList.contains('hidden')) {
+    tabSwitches++;
+    const t = new Date().toLocaleTimeString('vi-VN');
+    timeline.push(`Chuyển tab lúc ${t}`);
+  }
+});
+
+// Xác minh học sinh
+function verifyStudent() {
+  const code = document.getElementById('studentCode').value.trim().toUpperCase();
+  if (!code) return alert('Nhập mã học sinh!');
+  
+  fetch(`${URL}?action=verify&code=${code}`)
+    .then(r => r.json())
+    .then(d => {
+      if (!d.exists) return alert('Mã không tồn tại!');
+      student = {code, name: d.studentName || code};
+      document.getElementById('headerName').textContent = student.name;
+      document.getElementById('codeScreen').classList.add('hidden');
+      document.getElementById('testScreen').classList.remove('hidden');
+      startTime = Date.now();
+      
+      // Bắt đầu đếm thời gian
+      timer = setInterval(() => {
+        const s = Math.floor((Date.now() - startTime) / 1000);
+        const m = String(Math.floor(s / 60)).padStart(2, '0');
+        const sec = String(s % 60).padStart(2, '0');
+        document.getElementById('timer').textContent = `${m}:${sec}`;
+        
+        // Cập nhật progress bar
+        const answered = Object.keys(answers).filter(k => answers[k]).length;
+        document.getElementById('progress').style.width = `${(answered / TOTAL_QUESTIONS) * 100}%`;
+      }, 500);
+    })
+    .catch(err => {
+      alert('Lỗi kết nối: ' + err.message);
+    });
+}
+
+// Chọn đáp án trắc nghiệm
+function selectAnswer(questionNum, option) {
+  const time = new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
+  
+  // Xóa selected cũ
+  const buttons = document.querySelectorAll(`#testScreen .question-box:has(button[onclick*="selectAnswer(${questionNum},"]) .option-btn`);
+  buttons.forEach(btn => btn.classList.remove('selected'));
+  
+  // Thêm selected mới
+  event.target.classList.add('selected');
+  
+  // Lưu timeline
+  if (!answers[questionNum]) {
+    timeline.push(`Câu ${questionNum}: ${option} (${time})`);
+  } else if (answers[questionNum] !== option) {
+    timeline.push(`→ Đổi câu ${questionNum} thành ${option} (${time})`);
+  }
+  
+  answers[questionNum] = option;
+}
+
+// Lưu câu trả lời tự luận
+function saveTextAnswer(questionNum, value) {
+  const v = value.trim();
+  if (v === answers[questionNum]) return;
+  
+  const time = new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute: '2-digit', second: '2-digit'});
+  
+  if (!answers[questionNum] && v) {
+    timeline.push(`Câu ${questionNum}: "${v}" (${time})`);
+  } else if (answers[questionNum] && v) {
+    timeline.push(`→ Đổi câu ${questionNum} thành "${v}" (${time})`);
+  }
+  
+  answers[questionNum] = v;
+}
+
+// Nộp bài
+function submitTest() {
+  const answered = Object.keys(answers).filter(k => answers[k]).length;
+  
+  if (answered < TOTAL_QUESTIONS && !confirm(`Còn ${TOTAL_QUESTIONS - answered} câu trống. Nộp luôn?`)) {
+    return;
+  }
+  
+  clearInterval(timer);
+  const duration = document.getElementById('timer').textContent;
+  const realTime = new Date().toLocaleString('vi-VN');
+
+  const data = {
+    action: 'submit',
+    testName: TEST_NAME,
+    studentCode: student.code,
+    studentName: student.name,
+    answers: answers,
+    timeUsed: duration,
+    realSubmitTime: realTime,
+    timeline: timeline.join(' | '),
+    tabSwitchLog: tabSwitches > 0 ? `Chuyển tab ${tabSwitches} lần` : 'Không chuyển tab',
+    totalQuestions: TOTAL_QUESTIONS
+  };
+
+  fetch(`${URL}?data=${encodeURIComponent(JSON.stringify(data))}`)
+    .then(r => r.json())
+    .then(res => {
+      if (res.status === 'success') {
+        document.getElementById('testScreen').classList.add('hidden');
+        document.getElementById('resultScreen').classList.remove('hidden');
+        document.getElementById('finalScore').textContent = res.score + '%';
+        document.getElementById('correctCount').textContent = res.correctCount;
+        document.getElementById('finalTime').textContent = duration;
+        document.getElementById('wrongList').textContent = res.wrongQuestions.length ? res.wrongQuestions.join(', ') : 'Không có';
+
+        const tl = document.getElementById('timelineDisplay');
+        timeline.forEach(l => {
+          const p = document.createElement('p');
+          p.textContent = l;
+          tl.appendChild(p);
+        });
+        
+        if (tabSwitches > 0) {
+          const warn = document.createElement('p');
+          warn.className = 'text-red-600 font-bold text-xl';
+          warn.textContent = `Phát hiện chuyển tab ${tabSwitches} lần!`;
+          tl.appendChild(warn);
+        }
+        
+        alert(`Nộp thành công! Điểm: ${res.score}%`);
+      } else {
+        alert('Lỗi: ' + res.message);
+      }
+    })
+    .catch(err => {
+      alert('Lỗi khi nộp bài: ' + err.message);
+    });
+}
+</script>
+</body>
+</html>
