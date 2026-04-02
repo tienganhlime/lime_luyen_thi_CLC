@@ -579,11 +579,16 @@ function saveTextAnswer(questionNum, value) {
 function submitTest() {
   const answered = Object.keys(answers).filter(k => answers[k]).length;
   if (answered < TOTAL_QUESTIONS && !confirm(`Còn ${TOTAL_QUESTIONS - answered} câu trống. Nộp luôn?`)) return;
+  const submitBtn = document.querySelector('button[onclick="submitTest()"]');
+if (submitBtn) {
+  submitBtn.disabled = true;
+  submitBtn.textContent = '⏳ Đang nộp bài...';
+  submitBtn.style.opacity = '0.6';
+}
   clearInterval(timer);
   const duration = document.getElementById('timer').textContent;
   const realTime = new Date().toLocaleString('vi-VN');
   const data = {
-    action: 'submit',
     testName: TEST_NAME,
     studentCode: student.code,
     studentName: student.name,
@@ -594,10 +599,10 @@ function submitTest() {
     tabSwitchLog: tabSwitches > 0 ? `Chuyển tab ${tabSwitches} lần` : 'Không chuyển tab',
     totalQuestions: TOTAL_QUESTIONS
   };
-  fetch(`${URL}?data=${encodeURIComponent(JSON.stringify(data))}`)
+  fetch(`${URL}?action=submit&data=${encodeURIComponent(JSON.stringify(data))}`)
     .then(r => r.json())
     .then(res => {
-      if (res.status === 'success') {
+     if (res.success) {
         document.getElementById('testScreen').classList.add('hidden');
         document.getElementById('resultScreen').classList.remove('hidden');
         document.getElementById('finalScore').textContent = res.score + '%';
@@ -617,7 +622,10 @@ function submitTest() {
         alert('Lỗi: ' + res.message);
       }
     })
-    .catch(err => alert('Lỗi khi nộp bài: ' + err.message));
+    .catch(err => {
+  // Không mở lại nút — tránh duplicate
+  alert('Kết nối chậm. Bài có thể đã được ghi nhận — hỏi giáo viên để xác nhận!');
+});
 }
 </script>
 </body>
