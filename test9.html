@@ -606,9 +606,9 @@ if (submitBtn) {
         document.getElementById('testScreen').classList.add('hidden');
         document.getElementById('resultScreen').classList.remove('hidden');
         document.getElementById('finalScore').textContent = res.score + '%';
-        document.getElementById('correctCount').textContent = res.correctCount;
+        document.getElementById('correctCount').textContent = res.correct ?? '?';
         document.getElementById('finalTime').textContent = duration;
-        document.getElementById('wrongList').textContent = res.wrongQuestions.length ? res.wrongQuestions.join(', ') : 'Không có';
+       document.getElementById('wrongList').textContent = 'Xem kết quả với giáo viên';
         const tl = document.getElementById('timelineDisplay');
         timeline.forEach(l => { const p = document.createElement('p'); p.textContent = l; tl.appendChild(p); });
         if (tabSwitches > 0) {
